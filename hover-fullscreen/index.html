@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Fullscreen | Demo 0001</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="main"
+        style="background-image: url(https://images.pexels.com/photos/2228586/pexels-photo-2228586.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);">
+        <div class="list" id="list">
+            <a href="https://tranvicuongit.github.io/cui/hover-fullscreen" data-left="0" class="item">
+                <div class="inner">
+                    <div class="tt">
+                        <div class="img">
+                            <img src="https://images.pexels.com/photos/3785084/pexels-photo-3785084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                alt="">
+                        </div>
+                        <h2>Alex Đặng</h2>
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur ipsam laudantium
+                    </div>
+                </div>
+            </a>
+            <a href="https://tranvicuongit.github.io/cui/hover-fullscreen" data-left="1" class="item">
+                <div class="inner">
+                    <div class="tt">
+                        <div class="img">
+                            <img src="https://images.pexels.com/photos/1449667/pexels-photo-1449667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                alt="">
+                        </div>
+                        <h2>Jolie Phan</h2>
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur ipsam laudantium
+                    </div>
+                </div>
+            </a>
+            <a href="https://tranvicuongit.github.io/cui/hover-fullscreen" data-left="2" class="item">
+                <div class="inner">
+                    <div class="tt">
+                        <div class="img">
+                            <img src="https://images.pexels.com/photos/1425452/pexels-photo-1425452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=240"
+                                alt="">
+                        </div>
+                        <h2>Justin Le</h2>
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur ipsam laudantium
+                    </div>
+                </div>
+            </a>
+            <a href="https://tranvicuongit.github.io/cui/hover-fullscreen" data-left="3" class="item">
+                <div class="inner">
+                    <div class="tt">
+                        <div class="img">
+                            <img src="https://images.pexels.com/photos/417801/pexels-photo-417801.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                                alt="">
+                        </div>
+                        <h2>An Le</h2>
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur ipsam laudantium
+                    </div>
+                </div>
+            </a>
+            <a href="https://tranvicuongit.github.io/cui/hover-fullscreen" data-left="4" class="item">
+                <div class="inner">
+                    <div class="tt">
+                        <div class="img">
+                            <img src="https://images.pexels.com/photos/1430627/pexels-photo-1430627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                alt="">
+                        </div>
+                        <h2>Bui Le</h2>
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur ipsam laudantium
+                    </div>
+                </div>
+            </a>
+            <div class="bar" id="bar"></div>
+        </div>
+    </div>
+    <footer>
+        &copy; This Project Demo by <a href="https://tranvicuongit.github.io/cui/">
+            <strong>tranvicuongit@gmail.com</strong></a>
+    </footer>
+    <script>
+        var bar = document.getElementById('bar'),
+            list = document.getElementById('list'),
+            items = document.getElementsByClassName('item');
+
+        if (items && items.length > 0) {
+            for (var i = 0; i < items.length; i++) {
+                onItemHover(items[i]);
+            }
+        }
+
+        function onItemHover(item) {
+            item.addEventListener('mouseenter', function (e) {
+                var left = 0,
+                    width = e.target.clientWidth;
+                if (e.target.dataset && e.target.dataset.hasOwnProperty('left') && !Number.isNaN(+e.target.dataset.left)) {
+                    left = e.target.dataset.left;
+                }
+
+                bar.style.width = width + 'px';
+                bar.style.left = (left * width) + 'px';
+                if (bar.classList.contains('hide')) {
+                    bar.classList.remove('hide');
+                    bar.classList.add('show');
+                } else {
+                    bar.classList.add('active');
+                }
+            });
+            item.addEventListener('mouseout', function (e) {
+                if (bar.classList.contains('active')) {
+                    bar.classList.remove('active');
+
+                }
+            });
+        }
+
+
+        list.addEventListener('mouseout', function () {
+            if (bar.classList.contains('show')) {
+                bar.classList.remove('show');
+                bar.classList.add('hide');
+            }
+        });
+    </script>
+</body>
+
+</html>
