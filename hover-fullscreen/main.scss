@@ -1,0 +1,148 @@
+$footHeight: 32px;
+$footColor: #7070ff;
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    .list {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: row;
+        height: calc(100% - #{$footHeight});
+        overflow: hidden;
+        position: relative;
+
+        .item {
+            position: relative;
+            width: 25%;
+            display: flex;
+            height: 100%;
+            z-index: 2;
+            text-decoration: none;
+            transition: filter 0.32s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            * {
+                pointer-events: none;
+                user-select: none;
+            }
+            .inner {
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: flex-end;
+                height: 100%;
+                align-items: center;
+
+                .tt {
+                    h2 {
+                        font-weight: bold;
+                        font-size: 1.3rem;
+                        text-align: center;
+                        color: $footColor;
+                        transition: color 0.32s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.42s;
+                    }
+                    .img {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 100%;
+                        overflow: hidden;
+                        img {
+                            max-height: 100%;
+                            object-fit: cover;
+                            object-position: center center;
+                            width: 100%;
+                            transition: transform 0.42s ease-out, filter 0.4s ease-in-out;
+                            filter: grayscale(1);
+                        }
+                    }
+                }
+                .desc {
+                    // height: 40%;
+                    text-align: center;
+                    word-break: break-all;
+                    max-width: 100%;
+                    padding: 12px;
+                    box-sizing: border-box;
+                    position: relative;
+                    overflow: hidden;
+                }
+            }
+
+            &:hover {
+                filter: blur(0) grayscale(0) !important;
+                .inner {
+                    .tt {
+                        h2 {
+                            color: navy;
+                        }
+                        .img {
+                            img {
+                                filter: grayscale(0);
+                                transform: scale(1.35);
+                            }
+                        }
+                    }
+                    .desc {
+                    }
+                }
+            }
+        }
+
+        .bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            top: 2px;
+            z-index: 1;
+            transition: left 0.2s cubic-bezier(0.6, 0.3, 0.735, 0.045), height 0.23s ease-out 0.36s,
+                        background-color 0.1s ease-in;
+            &.active {
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.9);
+
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            .item {
+                filter: blur(3px) grayscale(0.9);
+            }
+            .bar {
+                filter: blur(0);
+            }
+        }
+    }
+}
+footer {
+    height: $footHeight;
+    background-color: navy;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: $footColor;
+    box-sizing: border-box;
+    padding: 8px;
+    a {
+        color: $footColor;
+    }
+    strong {
+        font-weight: bold;
+        color: white;
+    }
+}
